@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNS 정의와 장점</title>
+    <script src="https://threejs.org/build/three.js"></script>
+</head>
+<body>
+
+<script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    function createText(text, position) {
+        const geometry = new THREE.TextBufferGeometry(text, { size: 1, height: 0.1 });
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.set(...position);
+        scene.add(mesh);
+    }
+
+    createText("소셜 네트워크 서비스 (SNS)란 사용자들 간의 소통과 정보 공유를 위한 플랫폼입니다.", [-5, 2, -5]);
+    createText("장점:\n1. 빠른 소통과 실시간 업데이트\n2. 글로벌 브랜딩 및 마케팅 기회\n3. 다양한 콘텐츠 공유 및 소비", [-5, 0, -5]);
+
+    camera.position.z = 5;
+
+    const animate = () => {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    };
+
+    animate();
+</script>
+
+</body>
+</html>
